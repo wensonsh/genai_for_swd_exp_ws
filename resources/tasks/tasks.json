@@ -1,0 +1,101 @@
+{
+  "easy": {
+    "description": "You are given an integer array `nums` of length `n`.\n\nA partition is defined as an index `i` where `0 <= i < n - 1`, splitting the array into two **non-empty** subarrays such that:\n\n- Left subarray contains indices `[0, i]`.\n- Right subarray contains indices `[i + 1, n - 1]`.\n\nReturn the number of **partitions** where the **difference** between the **sum** of the left and right subarrays is **even**.",
+    "examples": [
+      {
+        "title": "Example 1",
+        "input": "nums = [10,10,3,7,6]",
+        "output": "4",
+        "explanation": "The 4 partitions are:\n\n`[10]`, `[10, 3, 7, 6]` with a sum difference of `10 - 26 = -16`, which is even.\n\n`[10, 10]`, `[3, 7, 6]` with a sum difference of `20 - 16 = 4`, which is even.\n\n`[10, 10, 3]`, `[7, 6]` with a sum difference of `23 - 13 = 10`, which is even.\n\n`[10, 10, 3, 7]`, `[6]` with a sum difference of `30 - 6 = 24`, which is even."
+      },
+      {
+        "title": "Example 2",
+        "input": "nums = [1,2,2]",
+        "output": "0",
+        "explanation": "No partition results in an even sum difference."
+      },
+       {
+        "title": "Example 3",
+        "input": "nums = [2,4,6,8]",
+        "output": "3",
+        "explanation": "All partitions result in an even sum difference."
+      }
+    ],
+    "additional_info": "`2 <= n == nums.length <= 100`\n`1 <= nums[i] <= 100`",
+    "template": "class Solution:\n    def countPartitions(self, nums: List[int]) -> int:\n        # CODE",
+    "hints": [
+      {
+        "title": "Hint 1",
+        "description": "If the parity of the sum is even, the partition is valid; otherwise, there is no partition."
+      }
+    ]
+  },
+  "medium": {
+    "description": "You are given an array `nums` of length `n`. You are also given an integer `k`.\n\nYou perform the following operation on `nums` **once**:\n\nSelect a *subarray* `nums[i..j]` where `0 <= i <= j <= n - 1`.\nSelect an integer `x` and add `x` to all the elements in `nums[i..j]`.\n\nFind the **maximum** frequency of the value `k` after the operation.",
+    "examples": [
+      {
+        "title": "Example 1",
+        "input": "nums = [1,2,3,4,5,6], k = 1",
+        "output": "2",
+        "explanation": "After adding -5 to `nums[2..5]`, 1 has a frequency of 2 in `[1, 2, -2, -1, 0, 1]`."
+      },
+      {
+        "title": "Example 2",
+        "input": "nums = [10,2,3,4,5,5,4,3,2,2], k = 10",
+        "output": "4",
+        "explanation": "After adding 8 to `nums[1..9]`, 10 has a frequency of 4 in `[10, 10, 11, 12, 13, 13, 12, 11, 10, 10]`."
+      }
+    ],
+    "additional_info": "`1 <= n == nums.length <= 105`\n`1 <= nums[i] <= 50`\n`1 <= k <= 50`",
+    "template": "class Solution:\n    def maxFrequency(self, nums: List[int], k: int) -> int:\n     #CODE",
+    "hints": [
+      {
+        "title": "Hint 1",
+        "description": "Fix the element you want to convert to `k`."
+      },
+      {
+        "title": "Hint 2",
+        "description": "Use prefix sums to optimize counting occurrences of an element."
+      }
+    ]
+  },
+    "hard": {
+    "description": "You are given an array of strings `words`. Find all **shortest common supersequences (SCS)** of `words` that are not *permutations* of each other.\n\nA **shortest common supersequence** is a string of **minimum** length that contains each string in `words` as a *subsequence*.\n\nReturn a 2D array of integers `freqs` that represent all the SCSs. Each `freqs[i]` is an array of size 26, representing the frequency of each letter in the lowercase English alphabet for a single SCS. You may return the frequency arrays in any order.",
+    "examples": [
+      {
+        "title": "Example 1",
+        "input": "words = ['ab','ba']",
+        "output": "[[1,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[2,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]]",
+        "explanation": "The two SCSs are `'aba'` and `'bab'`. The output is the letter frequencies for each one."
+      },
+      {
+        "title": "Example 2",
+        "input": "words = ['aa','ac']",
+        "output": "[[2,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]]",
+        "explanation": "The two SCSs are `'aac'` and `'aca'`. Since they are permutations of each other, keep only `'aac'`."
+      },
+      {
+        "title": "Example 3",
+        "input": "words = ['aa','bb','cc']",
+        "output": "[[2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]]",
+        "explanation": "`'aabbcc'` and all its permutations are SCSs."
+      }
+    ],
+    "additional_info": "`1 <= words.length <= 256`\n`words[i].length == 2`\nAll strings in `words` will altogether be composed of no more than 16 unique lowercase letters.\nAll strings in `words` are unique.",
+    "template": "class Solution:\n    def supersequences(self, words: List[str]) -> List[List[int]]:\n        # CODE",
+    "hints": [
+      {
+        "title": "Hint 1",
+        "description": "Each SCS contains at most 2 occurrences of each character."
+      },
+      {
+        "title": "Hint 2",
+        "description": "Construct every subset of possible characters (1 or 2)."
+      },
+      {
+        "title": "Hint 3",
+        "description": "Check if a supersequence could be constructed using Topological Sort."
+      }
+    ]
+  }
+}
